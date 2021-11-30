@@ -1,0 +1,5 @@
+% Function which return the length of a message and its binary form in rows
+function binary_msg = binary(message)
+  binary_msg = transpose(dec2bin(unit8(message), 8));
+  binary_msg = binary_msg(:);
+end
