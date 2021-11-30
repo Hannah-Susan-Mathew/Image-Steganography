@@ -1,0 +1,23 @@
+% Function to embed the message in the input image
+function output = embed(input, binary_msg, message)
+  output = input;
+  % Counter for the number of embedded bits
+  embed_counter = 1;
+  msg_len = length(message)*8;
+  % Traverse through the image
+  for i = 1:size(input, 1)
+    for j = 1:size(input, 2)
+      % If more bits are remaining to embed
+      if(embed_counter <= msg_len)
+        % Finding the Least Significant Bit of the current pixel
+        LSB = mod(double(input(i, j), 2);
+        % Find whether the bit is same or needs to change
+        temp = double(xor(LSB, binary_msg(embed_counter)));
+        % Updating the output as input + temp
+        output(i, j) = input(i, j) + temp;
+        % Increment the embed_counter
+        embed_counter = embed_counter + 1;
+      end
+    end
+  end
+end
